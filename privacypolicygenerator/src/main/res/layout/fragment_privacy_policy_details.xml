@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrivacyPolicyDetailsFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@+id/addPrayerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/productNameTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/product_name"
+                app:boxStrokeColor="@android:color/holo_purple"
+                app:boxStrokeWidth="1dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="500"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/productNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/userWhereText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/where_will_your_privacy_used"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productNameTextInputLayout" />
+
+            <CheckBox
+                android:id="@+id/appCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="@string/app_android_ios"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userWhereText" />
+
+            <CheckBox
+                android:id="@+id/webCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/web"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCheckBox" />
+
+            <TextView
+                android:id="@+id/entityTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/entity_type"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/webCheckBox" />
+
+            <CheckBox
+                android:id="@+id/businessCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="@string/business"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/entityTypeText" />
+
+            <CheckBox
+                android:id="@+id/individualCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/individual"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/businessCheckBox" />
+
+            <TextView
+                android:id="@+id/userInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_collect_personal_information_from_users"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/userDataSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/individualCheckBox" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/userDataSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/individualCheckBox" />
+
+            <LinearLayout
+                android:id="@+id/userInformationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userInformationText">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_all_information_you_collect"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/nameCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/name" />
+
+                <CheckBox
+                    android:id="@+id/emailCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/email" />
+
+                <CheckBox
+                    android:id="@+id/phoneCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/phone_number" />
+
+                <CheckBox
+                    android:id="@+id/addressCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/address" />
+
+                <CheckBox
+                    android:id="@+id/socialCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/social_media_information_social_login" />
+
+                <LinearLayout
+                    android:id="@+id/socialMediaLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/deviceNoCheckBox">
+
+                    <CheckBox
+                        android:id="@+id/fbCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/facebook" />
+
+                    <CheckBox
+                        android:id="@+id/twitterCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/twitter" />
+
+                    <CheckBox
+                        android:id="@+id/googleCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/google" />
+
+                    <CheckBox
+                        android:id="@+id/linkedInCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/linkedin" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/deviceInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_collect_any_information_from_device"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/deviceDataSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userInformationLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/deviceDataSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userInformationLayout" />
+
+            <LinearLayout
+                android:id="@+id/deviceInformationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deviceDataSwitch">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_all_information_you_collect" />
+
+                <CheckBox
+                    android:id="@+id/locationCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/location" />
+
+                <CheckBox
+                    android:id="@+id/contactCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/contact" />
+
+                <CheckBox
+                    android:id="@+id/cameraCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/camera" />
+
+                <CheckBox
+                    android:id="@+id/storageCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/storage" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/analyticsInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_use_tracking_and_or_analytics_tools"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/analyticsSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deviceInformationLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/analyticsSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deviceInformationLayout" />
+
+            <LinearLayout
+                android:id="@+id/analyticsInformationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/analyticsInformationText">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_all_that_apply" />
+
+                <CheckBox
+                    android:id="@+id/firebaseCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/firebase" />
+
+                <CheckBox
+                    android:id="@+id/googleAnalyticsCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/google_analytics" />
+
+                <CheckBox
+                    android:id="@+id/facebookCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/facebook" />
+
+                <CheckBox
+                    android:id="@+id/appsFlyerCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/apps_flyer" />
+
+                <CheckBox
+                    android:id="@+id/flurryCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/flurry" />
+
+                <CheckBox
+                    android:id="@+id/mixpanelCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/mixpanel" />
+
+                <CheckBox
+                    android:id="@+id/otherCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/other" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/emailInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_send_emails_to_users"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/emailSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/analyticsInformationLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/emailSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/analyticsInformationLayout" />
+
+            <LinearLayout
+                android:id="@+id/emailInformationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailInformationText">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_all_that_apply" />
+
+                <CheckBox
+                    android:id="@+id/mailChimpCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/mail_chimp" />
+
+                <CheckBox
+                    android:id="@+id/constantContactCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/constant_contact" />
+
+                <CheckBox
+                    android:id="@+id/getResponseCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/getresponse" />
+
+                <CheckBox
+                    android:id="@+id/AweberCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/aweber" />
+
+                <CheckBox
+                    android:id="@+id/otherEmailCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/other" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/showAdsInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_show_ads"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/adsSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailInformationLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/adsSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailInformationLayout" />
+
+            <LinearLayout
+                android:id="@+id/adsInformationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/showAdsInformationText">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_all_that_apply" />
+
+                <CheckBox
+                    android:id="@+id/admobCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/admob" />
+
+                <CheckBox
+                    android:id="@+id/bingCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/bing" />
+
+                <CheckBox
+                    android:id="@+id/startAppCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/startapp" />
+
+                <CheckBox
+                    android:id="@+id/flurryAdsCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/flurry" />
+
+                <CheckBox
+                    android:id="@+id/moPubCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/mopub" />
+
+                <CheckBox
+                    android:id="@+id/inMobiCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/inmobi" />
+
+                <CheckBox
+                    android:id="@+id/adColonyCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/adcolony" />
+
+                <CheckBox
+                    android:id="@+id/appLovinCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/applovin" />
+
+                <CheckBox
+                    android:id="@+id/fbAdsCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/facebook_ads" />
+
+                <CheckBox
+                    android:id="@+id/amazonCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/amazon_ads" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/paymentInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/can_users_pay_for_products_or_services"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/paymentSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adsInformationLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/paymentSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adsInformationLayout" />
+
+            <LinearLayout
+                android:id="@+id/paymentInformationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/showAdsInformationText">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_all_that_apply" />
+
+                <CheckBox
+                    android:id="@+id/bankCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/bank_transfer" />
+
+                <CheckBox
+                    android:id="@+id/inAppPaymentCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/in_app_payment_google_play_apple_store" />
+
+                <CheckBox
+                    android:id="@+id/stripeCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/stripe" />
+
+                <CheckBox
+                    android:id="@+id/upiCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/upi" />
+
+                <CheckBox
+                    android:id="@+id/paytmCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/paytm" />
+
+                <CheckBox
+                    android:id="@+id/googlePayCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/google_pay" />
+
+                <CheckBox
+                    android:id="@+id/wePayCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/wepay" />
+
+                <CheckBox
+                    android:id="@+id/worldPayCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/worldpay" />
+
+                <CheckBox
+                    android:id="@+id/paypalCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/paypal" />
+
+                <CheckBox
+                    android:id="@+id/brainTreeCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/braintree" />
+
+                <CheckBox
+                    android:id="@+id/sagePayCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/sage_pay" />
+
+                <CheckBox
+                    android:id="@+id/razorPayCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/razor_pay" />
+
+                <CheckBox
+                    android:id="@+id/ccAvenueCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/cc_avenue" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

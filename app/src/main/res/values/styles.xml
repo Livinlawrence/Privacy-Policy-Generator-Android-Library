@@ -1,0 +1,31 @@
+<resources>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:colorBackground">@color/colorSurface</item>
+        <item name="colorOnBackground">@color/colorSurface</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:actionModeBackground">@android:color/holo_blue_dark</item>
+        <item name="actionModeBackground">@android:color/holo_blue_dark</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="colorControlNormal">@color/brick_red</item>
+    </style>
+
+</resources>

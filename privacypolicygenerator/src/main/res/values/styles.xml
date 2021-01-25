@@ -1,0 +1,8 @@
+<resources>
+
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="colorControlNormal">@color/brick_red</item>
+    </style>
+
+</resources>
