@@ -31,12 +31,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/effectiveDateText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/effective_date"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/productNameTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:hint="@string/product_name"
                 app:boxStrokeColor="@android:color/holo_purple"
                 app:boxStrokeWidth="1dp"
@@ -45,7 +56,7 @@
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/effectiveDateText">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/productNameEditText"
@@ -90,6 +101,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appCheckBox" />
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/websiteUrlTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/website_url"
+                android:visibility="gone"
+                app:boxStrokeColor="@android:color/holo_purple"
+                app:boxStrokeWidth="1dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCheckBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/websiteEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/entityTypeText"
                 android:layout_width="wrap_content"
@@ -102,7 +141,7 @@
                 android:textSize="@dimen/questions_font_size"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/webCheckBox" />
+                app:layout_constraintTop_toBottomOf="@+id/websiteUrlTextInputLayout" />
 
             <CheckBox
                 android:id="@+id/businessCheckBox"
@@ -114,6 +153,109 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/entityTypeText" />
 
+            <LinearLayout
+                android:id="@+id/businessInformationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/businessCheckBox">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/businessAddressTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/business_address"
+                    app:boxStrokeColor="@android:color/holo_purple"
+                    app:boxStrokeWidth="1dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="500"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/businessAddressEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="textMultiLine"
+                        android:minHeight="150dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/businessEmailTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/business_email"
+                    app:boxStrokeColor="@android:color/holo_purple"
+                    app:boxStrokeWidth="1dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="100"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/businessEmailEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/businessContactNumberTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/business_contact_number"
+                    app:boxStrokeColor="@android:color/holo_purple"
+                    app:boxStrokeWidth="1dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="15"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/businessContactNumberEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/businessCountryTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/business_country"
+                    app:boxStrokeColor="@android:color/holo_purple"
+                    app:boxStrokeWidth="1dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="100"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/businessCountryEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+
             <CheckBox
                 android:id="@+id/individualCheckBox"
                 android:layout_width="match_parent"
@@ -121,7 +263,33 @@
                 android:text="@string/individual"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/businessCheckBox" />
+                app:layout_constraintTop_toBottomOf="@+id/businessInformationLayout" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/developerNameTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/developer_name"
+                android:visibility="gone"
+                app:boxStrokeColor="@android:color/holo_purple"
+                app:boxStrokeWidth="1dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/individualCheckBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/developerNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/userInformationText"
@@ -136,7 +304,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/userDataSwitch"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/individualCheckBox" />
+                app:layout_constraintTop_toBottomOf="@+id/developerNameTextInputLayout" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/userDataSwitch"
@@ -146,7 +314,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/individualCheckBox" />
+                app:layout_constraintTop_toBottomOf="@+id/developerNameTextInputLayout" />
 
             <LinearLayout
                 android:id="@+id/userInformationLayout"
@@ -443,16 +611,16 @@
                     android:text="@string/constant_contact" />
 
                 <CheckBox
+                    android:id="@+id/aweberCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/aweber" />
+
+                <CheckBox
                     android:id="@+id/getResponseCheckBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/getresponse" />
-
-                <CheckBox
-                    android:id="@+id/AweberCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/aweber" />
 
                 <CheckBox
                     android:id="@+id/otherEmailCheckBox"
@@ -562,6 +730,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/amazon_ads" />
+
+                <CheckBox
+                    android:id="@+id/otherAdCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/other" />
             </LinearLayout>
 
             <TextView
@@ -598,7 +772,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/showAdsInformationText">
+                app:layout_constraintTop_toBottomOf="@+id/paymentInformationText">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -683,8 +857,296 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/cc_avenue" />
+
+                <CheckBox
+                    android:id="@+id/otherPaymentCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/other" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/reMarketingInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_use_remarketing_services_for_marketing_amp_advertising_purposes"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/reMarketingSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/paymentInformationLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/reMarketingSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/paymentInformationLayout" />
+
+            <LinearLayout
+                android:id="@+id/reMarketingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reMarketingInformationText">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_all_that_apply" />
+
+                <CheckBox
+                    android:id="@+id/googleAdsCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/google_ads" />
+
+                <CheckBox
+                    android:id="@+id/fbReMarketingCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/facebook_ads" />
+
+                <CheckBox
+                    android:id="@+id/twitterReMarketingCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/twitter" />
+
+                <CheckBox
+                    android:id="@+id/bingReMarketingCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/bing" />
+
+                <CheckBox
+                    android:id="@+id/pinterestCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/pinterest" />
+
+                <CheckBox
+                    android:id="@+id/otherReMarketingCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/other" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ccpaText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_want_your_privacy_policy_to_include_ccpa_wording"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/ccpaSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reMarketingLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/ccpaSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reMarketingLayout" />
+
+            <TextView
+                android:id="@+id/gdprText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_want_your_privacy_policy_to_include_gdpr_wording"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/gdprSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ccpaText" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/gdprSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ccpaText" />
+
+            <TextView
+                android:id="@+id/caloppaText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_want_your_privacy_policy_to_include_caloppa_wording"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/caloppaSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gdprText" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/caloppaSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gdprText" />
+
+
+            <TextView
+                android:id="@+id/contactText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/how_can_users_contact_you_for_any_questions_regarding_your_privacy_policy"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/caloppaText" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contactEmailTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/product_name"
+                app:boxStrokeColor="@android:color/holo_purple"
+                app:boxStrokeWidth="1dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contactText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contactEmailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contactWebsiteTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/website"
+                app:boxStrokeColor="@android:color/holo_purple"
+                app:boxStrokeWidth="1dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contactEmailTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contactWebsiteEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contactPhoneTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/phone_number"
+                app:boxStrokeColor="@android:color/holo_purple"
+                app:boxStrokeWidth="1dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contactWebsiteTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contactPhoneEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contactAddressTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/email"
+                app:boxStrokeColor="@android:color/holo_purple"
+                app:boxStrokeWidth="1dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toTopOf="@+id/generateButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contactPhoneTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contactAddressEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress|textMultiLine"
+                    android:maxLines="10" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/generateButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="50dp"
+                android:text="@string/generate_privacy_policy"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
 </FrameLayout>

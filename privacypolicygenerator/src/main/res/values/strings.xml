@@ -30,7 +30,6 @@
     <string name="firebase">Firebase</string>
     <string name="google_analytics">Google Analytics</string>
     <string name="apps_flyer">Apps Flyer</string>
-    <string name="flurry">Flurry</string>
     <string name="mixpanel">Mixpanel</string>
     <string name="other">Other</string>
     <string name="do_you_send_emails_to_users">Do you send emails to users?</string>
@@ -63,4 +62,22 @@
     <string name="sage_pay">Sage Pay</string>
     <string name="razor_pay">Razor Pay</string>
     <string name="cc_avenue">CC Avenue</string>
+    <string name="do_you_use_remarketing_services_for_marketing_amp_advertising_purposes"><![CDATA[Do you use remarketing services for marketing & advertising purposes?]]></string>
+    <string name="google_ads">Google Ads</string>
+    <string name="pinterest">Pinterest</string>
+    <string name="do_you_want_your_privacy_policy_to_include_ccpa_wording">Do you want your Privacy Policy to include CCPA wording?</string>
+    <string name="do_you_want_your_privacy_policy_to_include_gdpr_wording">Do you want your Privacy Policy to include GDPR wording?</string>
+    <string name="do_you_want_your_privacy_policy_to_include_caloppa_wording">Do you want your Privacy Policy to include CalOPPA wording?</string>
+    <string name="how_can_users_contact_you_for_any_questions_regarding_your_privacy_policy">How can users contact you for any questions regarding your Privacy Policy?</string>
+    <string name="website">Website</string>
+    <string name="generate_privacy_policy">Generate Privacy Policy</string>
+    <string name="website_url">Website Url</string>
+    <string name="effective_date">Effective Date</string>
+    <string name="business_address">Business Address</string>
+    <string name="business_email">Business Email</string>
+    <string name="business_contact_number">Business contact number</string>
+    <string name="business_country">Business country</string>
+    <string name="developer_name">Developer name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
