@@ -16,6 +16,7 @@
     <string name="phone_number">Phone number</string>
     <string name="address">Address</string>
     <string name="social_media_information_social_login">Social Media Information (Social Login)</string>
+    <string name="do_you_collect_cookies">Do you collect cookies?</string>
     <string name="do_you_collect_any_information_from_device">Do you collect any information from device?</string>
     <string name="location">Location</string>
     <string name="contact">Contact</string>
@@ -80,4 +81,10 @@
     <string name="developer_name">Developer name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mandatory_field">Mandatory field</string>
+    <string name="select_app_type">Select application type</string>
+    <string name="select_entity_type">Select entity type</string>
+    <string name="do_you_collect_information_from_kids_under_the_age_of_13">Do you collect information from kids under the age of 13?</string>
+    <string name="invalid_website">Invalid website address</string>
+    <string name="invalid_email_address">Invalid email address</string>
 </resources>

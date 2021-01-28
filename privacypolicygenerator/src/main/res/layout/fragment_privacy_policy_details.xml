@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PrivacyPolicyDetailsFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toTopOf="@+id/addPrayerButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        android:layout_above="@+id/generateButton"
+        android:layout_marginTop="60dp"
+        android:fillViewport="true"
+        android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp">
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -47,7 +47,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:hint="@string/product_name"
                 app:boxStrokeColor="@android:color/holo_purple"
                 app:boxStrokeWidth="1dp"
@@ -118,16 +118,43 @@
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCheckBox">
+                app:layout_constraintTop_toBottomOf="@+id/webCheckBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/websiteEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
+                    android:inputType="text"
                     android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/cookiesInformationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_collect_cookies"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/cookiesDataSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/websiteUrlTextInputLayout" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/cookiesDataSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/websiteUrlTextInputLayout" />
 
             <TextView
                 android:id="@+id/entityTypeText"
@@ -141,7 +168,7 @@
                 android:textSize="@dimen/questions_font_size"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/websiteUrlTextInputLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/cookiesInformationText" />
 
             <CheckBox
                 android:id="@+id/businessCheckBox"
@@ -254,7 +281,6 @@
                         android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-
 
             <CheckBox
                 android:id="@+id/individualCheckBox"
@@ -403,6 +429,7 @@
                         android:text="@string/linkedin" />
                 </LinearLayout>
             </LinearLayout>
+
 
             <TextView
                 android:id="@+id/deviceInformationText"
@@ -1019,6 +1046,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gdprText" />
 
+            <TextView
+                android:id="@+id/childText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="5"
+                android:text="@string/do_you_collect_information_from_kids_under_the_age_of_13"
+                android:textSize="@dimen/questions_font_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/childSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/caloppaText" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/childSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/caloppaText" />
 
             <TextView
                 android:id="@+id/contactText"
@@ -1033,7 +1084,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/caloppaText" />
+                app:layout_constraintTop_toBottomOf="@+id/childText" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -1124,7 +1175,6 @@
                 app:counterMaxLength="15"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:layout_constraintBottom_toTopOf="@+id/generateButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contactPhoneTextInputLayout">
@@ -1138,15 +1188,16 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
-                android:id="@+id/generateButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="50dp"
-                android:text="@string/generate_privacy_policy"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-</FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/generateButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/generate_privacy_policy" />
+</RelativeLayout>

@@ -3,9 +3,11 @@ package com.livin.privacypolicygenerator
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.livin.privacypolicygenerator.interfaces.ActivityCallBack
 import kotlinx.android.synthetic.main.fragment_privacy_policy_details.*
@@ -45,6 +47,15 @@ class PrivacyPolicyDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        userDataSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                userInformationLayout.visibility = View.VISIBLE
+            } else {
+                userInformationLayout.visibility = View.GONE
+            }
+        }
+
         socialCheckBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 socialMediaLayout.visibility = View.VISIBLE
@@ -58,14 +69,6 @@ class PrivacyPolicyDetailsFragment : Fragment() {
                 deviceInformationLayout.visibility = View.VISIBLE
             } else {
                 deviceInformationLayout.visibility = View.GONE
-            }
-        }
-
-        userDataSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                userInformationLayout.visibility = View.VISIBLE
-            } else {
-                userInformationLayout.visibility = View.GONE
             }
         }
 
@@ -156,18 +159,65 @@ class PrivacyPolicyDetailsFragment : Fragment() {
 
 
         generateButton.setOnClickListener {
-            val effectiveDate = effectiveDateText.text.toString()
-            val productName = productNameEditText.text.toString()
-            val businessWebsite = websiteEditText.text.toString()
-            val businessAddress = businessAddressEditText.text.toString()
-            val businessEmail = businessEmailEditText.text.toString()
-            val businessPhone = businessContactNumberEditText.text.toString()
-            val businessCountry = businessCountryEditText.text.toString()
-            val developerName = developerNameEditText.text.toString()
+            validateRequiredFields()
+        }
+        setupTextWatchers()
+    }
+
+    private fun setupTextWatchers() {
+        productNameEditText.doOnTextChanged { _, _, _, _ ->
+            productNameTextInputLayout.error = null
+        }
+        websiteEditText.doOnTextChanged { _, _, _, _ ->
+            websiteUrlTextInputLayout.error = null
+        }
+        developerNameEditText.doOnTextChanged { _, _, _, _ ->
+            developerNameTextInputLayout.error = null
+        }
+        businessAddressEditText.doOnTextChanged { _, _, _, _ ->
+            businessAddressTextInputLayout.error = null
+        }
+        businessEmailEditText.doOnTextChanged { _, _, _, _ ->
+            businessEmailTextInputLayout.error = null
+        }
+
+    }
+
+    private fun validateRequiredFields() {
+        val effectiveDate = effectiveDateText.text.toString()
+        val productName = productNameEditText.text.toString()
+        val productWebsite = websiteEditText.text.toString()
+        val businessAddress = businessAddressEditText.text.toString()
+        val businessEmail = businessEmailEditText.text.toString()
+        val businessPhone = businessContactNumberEditText.text.toString()
+        val businessCountry = businessCountryEditText.text.toString()
+        val developerName = developerNameEditText.text.toString()
+
+        if (productName.isEmpty()) {
+            productNameTextInputLayout.error = getString(R.string.mandatory_field)
+        } else if (!webCheckBox.isChecked && !appCheckBox.isChecked) {
+            userWhereText.snack(getString(R.string.where_will_your_privacy_used)) {}
+        } else if (webCheckBox.isChecked && productWebsite.isEmpty()) {
+            websiteUrlTextInputLayout.error = getString(R.string.mandatory_field)
+        } else if (webCheckBox.isChecked && !Patterns.WEB_URL.matcher(productWebsite).matches()) {
+            websiteUrlTextInputLayout.error = getString(R.string.invalid_website)
+        } else if (!businessCheckBox.isChecked && !individualCheckBox.isChecked) {
+            userWhereText.snack(getString(R.string.select_entity_type)) {}
+        } else if (individualCheckBox.isChecked && developerName.isEmpty()) {
+            developerNameTextInputLayout.error = getString(R.string.mandatory_field)
+        } else if (businessCheckBox.isChecked && businessAddress.isEmpty()) {
+            businessAddressTextInputLayout.error = getString(R.string.mandatory_field)
+        } else if (businessCheckBox.isChecked && businessEmail.isEmpty()) {
+            businessEmailTextInputLayout.error = getString(R.string.mandatory_field)
+        } else if (businessCheckBox.isChecked && !Patterns.EMAIL_ADDRESS.matcher(businessEmail)
+                .matches()
+        ) {
+            businessEmailTextInputLayout.error = getString(R.string.invalid_email_address)
+        } else {
 
             val business = PrivacyPolicyBuilder.Business(
                 productName,
-                businessWebsite,
+                productWebsite,
                 businessAddress,
                 businessEmail,
                 businessPhone,
@@ -292,7 +342,16 @@ class PrivacyPolicyDetailsFragment : Fragment() {
                 individualCheckBox.isChecked,
                 businessCheckBox.isChecked,
                 appCheckBox.isChecked,
-                webCheckBox.isChecked
+                webCheckBox.isChecked,
+                userDataSwitch.isChecked,
+                deviceDataSwitch.isChecked,
+                analyticsSwitch.isChecked,
+                adsSwitch.isChecked,
+                emailSwitch.isChecked,
+                paymentSwitch.isChecked,
+                reMarketingSwitch.isChecked,
+                cookiesDataSwitch.isChecked,
+                childSwitch.isChecked
             ).generate()
 
             activityCallBack?.htmlGenerated(htmlString)
@@ -326,5 +385,7 @@ class PrivacyPolicyDetailsFragment : Fragment() {
                     putInt(TYPE, type)
                 }
             }
+
+        const val TAG = "PrivacyPolicyDetailsFragment"
     }
 }

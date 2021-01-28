@@ -37,6 +37,8 @@ class WebViewFragment : Fragment() {
     }
 
     companion object {
+        const val TAG = "WebViewFragment"
+
         @JvmStatic
         fun newInstance(param1: String) =
             WebViewFragment().apply {

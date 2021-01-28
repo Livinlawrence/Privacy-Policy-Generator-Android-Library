@@ -1,6 +1,7 @@
 package com.livin.privacypolicygenerator
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.livin.privacypolicygenerator.interfaces.ActivityCallBack
 import kotlinx.android.synthetic.main.activity_generator.*
@@ -12,7 +13,7 @@ class GeneratorActivity : AppCompatActivity(), ActivityCallBack {
         setContentView(R.layout.activity_generator)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Generate"
+        supportActionBar?.title = "Generate Privacy Policy"
         supportActionBar?.setDisplayShowTitleEnabled(true)
         //set back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -26,8 +27,13 @@ class GeneratorActivity : AppCompatActivity(), ActivityCallBack {
 
     override fun htmlGenerated(htmlString: String) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.frameLayout, WebViewFragment.newInstance(htmlString)).commit()
+            .add(R.id.frameLayout, WebViewFragment.newInstance(htmlString))
+            .addToBackStack(WebViewFragment.TAG).commit()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        onBackPressed()
+        return super.onOptionsItemSelected(item)
+    }
 
 }

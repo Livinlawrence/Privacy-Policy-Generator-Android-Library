@@ -25,7 +25,16 @@ class PrivacyPolicyBuilder(
     val singleOwner: Boolean = false,
     val businessOwner: Boolean = false,
     val isApp: Boolean = false,
-    val isWeb: Boolean = false
+    val isWeb: Boolean = false,
+    val collectingUserData: Boolean = false,
+    val collectingDeviceData: Boolean = false,
+    val usingAnalytics: Boolean = false,
+    val showingAds: Boolean = false,
+    val sendingEmails: Boolean = false,
+    val hasPayment: Boolean = false,
+    val reMarketingData: Boolean = false,
+    val collectingCookies: Boolean = false,
+    val collectingChildData: Boolean = false
 ) {
 
     data class Builder(
@@ -196,6 +205,289 @@ class PrivacyPolicyBuilder(
         return tools
     }
 
+    private fun getCollectingDataHtml(): String {
+        var sb = StringBuilder()
+        if (collectingUserData) {
+            sb.append("<li> <p><strong>Personal Information</strong></p>")
+            sb.append("<p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (Personal Data). Personally identifiable information may include, but is not limited to: ")
+            sb.append("<ul>")
+            if (userInformation?.email == true) {
+                sb.append("<li>Email address</li>")
+            }
+            if (userInformation?.name == true) {
+                sb.append("<li>Name</li>")
+            }
+
+            if (userInformation?.address == true) {
+                sb.append("<li>Address</li>")
+            }
+
+            if (userInformation?.phoneNumber == true) {
+                sb.append("<li>Phone Number</li>")
+            }
+
+            if (userInformation?.realtimeLocation == true) {
+                sb.append("<li>Real time location</li>")
+            }
+
+            if (userInformation?.social == true) {
+                sb.append("<li>Social Media</li>")
+                sb.append("<ul>")
+                if (socialMediaProfileInformation?.fb == true) {
+                    sb.append("<li>Facebook</li>")
+                }
+
+                if (socialMediaProfileInformation?.google == true) {
+                    sb.append("<li>Google</li>")
+                }
+
+                if (socialMediaProfileInformation?.twitter == true) {
+                    sb.append("<li>Twitter</li>")
+                }
+
+                if (socialMediaProfileInformation?.linkedin == true) {
+                    sb.append("<li>LinkedIn</li>")
+                }
+                sb.append("</ul>")
+            }
+            sb.append("</ul>")
+            sb.append(
+                "</p><p>We may use your Personal Data to contact you with newsletters, marketing or promotional " +
+                        "materials and other information that may be of interest to you. You may opt out of receiving any, " +
+                        "or all, of these communications from us by following the unsubscribe link or instructions provided in" +
+                        " any email we send.</p>"
+            )
+            sb.append("</li>")
+        }
+
+        if (collectingDeviceData) {
+            sb.append("<li> <p><strong>Device and Connection Information</strong></p>")
+            sb.append(
+                "<p>We collect device-specific information when you install, access, or use our Services. This includes information such as hardware model," +
+                        "operating system information, browser information, IP address, " +
+                        "mobile network information including phone number, and device identifiers. We collect device "
+            )
+            sb.append("<ul>")
+            if (deviceInformation?.location == true) {
+                sb.append("<li>Location</li>")
+            }
+            if (deviceInformation?.camera == true) {
+                sb.append("<li>Camera</li>")
+            }
+
+            if (deviceInformation?.contacts == true) {
+                sb.append("<li>Contacts</li>")
+            }
+
+            if (deviceInformation?.storage == true) {
+                sb.append("<li>SD card or Storage space</li>")
+            }
+            sb.append("</ul>")
+            sb.append(
+                "</p><p>We collect all this device location information whenever you select any of this specific service." +
+                        "We may use this data to improve the service experience to our users.</p>"
+            )
+            sb.append("</li>")
+        }
+
+        if (isWeb) {
+            sb.append("<li> <p><strong>Cookies Data</strong></p>")
+            sb.append(
+                "<p>We collect device-specific information when you install, access, or use our Services. This includes information such as hardware model," +
+                        "operating system information, browser information, IP address, " +
+                        "mobile network information including phone number, and device identifiers. We collect device "
+            )
+            sb.append(
+                "<p>We use cookies to operate and provide our Services, including to provide our Services that are web-based, improve your experiences, " +
+                        "understand how our Services are being used, and customize our Services.</p>" +
+                        "<p>Cookies are files with small amount of data which may include an anonymous unique identifier." +
+                        " Cookies are sent to your browser from a website and stored on your device. Tracking technologies" +
+                        " also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.</p>" +
+                        "<p>You can instruct your device to refuse all cookies or to indicate when a cookie is being sent." +
+                        " However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>" +
+                        "<p>Examples of Cookies we use: <strong>session cookies</strong> (we use these cookies to operate our Service). " +
+                        "Additionally, we may use cookies to remember your choices, such as your language preferences, and otherwise to customize our Services for you.</p>"
+            )
+            sb.append("</li>")
+        }
+
+        if (!collectingDeviceData && !collectingDeviceData && !isWeb) {
+            sb.append(
+                "<p>We don't collect any specific data of the user or device, however we collect device-specific " +
+                        "information when you install, access, or use our Services. This includes information such as hardware model, " +
+                        "operating system information, browser information, IP address, mobile network information including phone number, " +
+                        "and device identifiers. We collect device location information if you use our location features, " +
+                        "We collect contacts if you use our contact related features, " +
+                        "and all this information collected are for diagnostics and troubleshooting " +
+                        "purposes such as if you are having trouble with our app’s features.</p>"
+            )
+        }
+        return sb.toString()
+    }
+
+    private fun getChildPrivacyHtml(): String {
+        val sb = StringBuilder()
+        if (collectingChildData) {
+            sb.append(
+                "<h2 class=pt-3 pb-3>Children\'s Privacy</h2> <p>Our Service does not address anyone under the age of 18 (Children).</p><p>We do not knowingly collect " +
+                        "personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children has provided " +
+                        "us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, " +
+                        "we take steps to remove that information from our servers.</p><h2 class=pt-3 pb-3>Changes To This Privacy Policy</h2>" +
+                        "<p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>" +
+                        "<p>We will let you know via email and/or a prominent notice on our Service, prior to the change becoming effective and update the effective date at the top of this Privacy Policy.</p>" +
+                        "<p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>"
+            )
+        }
+        return sb.toString()
+    }
+
+    private fun getAnalyticsHtml(): String {
+        val sb = StringBuilder()
+        if (usingAnalytics) {
+            sb.append(
+                "<h3 class=text-muted pt-2 pb-3>Analytics</h3>" +
+                        "<p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p><ul>"
+            )
+            if (analyticsInformation?.google == true) {
+                sb.append(
+                    "  <li><p><strong>Google Analytics</strong></p>" +
+                            "<p>Google Analytics is a web analytics service offered by Google that tracks and reports website traffic." +
+                            " Google uses the data collected to track and monitor the use of our Service. This data is shared " +
+                            "with other Google services. Google may use the collected data to contextualize and personalize the" +
+                            "ads of its own advertising network.</p>" +
+                            "<p>You can opt-out of having made your activity on the Service available to Google Analytics by installing " +
+                            "the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js," +
+                            "analytics.js, and dc.js) from sharing information with Google Analytics about visits activity.</p>" +
+                            "<p>For more information on the privacy practices of Google, " +
+                            "please visit the Google Privacy &amp; Terms web page: <a href=http://www.google.com/intl/en/policies/privacy/>http://www.google.com/intl/en/policies/privacy/</a></p>" +
+                            " </li>"
+                )
+            }
+
+            sb.append("</ul>")
+        }
+
+        return sb.toString()
+    }
+
+    private fun getPaymentHtml(): String {
+        val sb = StringBuilder()
+        if (hasPayment) {
+            sb.append(
+                "<h3 class=text-muted pt-2 pb-3>Payments</h3>" +
+                        " <p>We may provide paid products and/or services within the Service. In that case, we use third-party services for " +
+                        "payment processing (e.g. payment processors).</p>" +
+                        "  <p>We will not store or collect your payment card details. That information is provided directly to our " +
+                        "third-party payment processors whose use of your personal information is governed by their Privacy Policy. " +
+                        "These payment processors adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, " +
+                        "which is a joint effort of brands like Visa, Mastercard, American Express and Discover. PCI-DSS requirements " +
+                        "help ensure the secure handling of payment information.</p>" +
+                        " <p>The payment processors we work with are:</p>" +
+                        "<ul>"
+            )
+
+            if (paymentInformation?.paypal == true) {
+                sb.append(
+                    "<li><strong>PayPal or Braintree.</strong> Their Privacy Policy can be viewed at" +
+                            " <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>" +
+                            " </li>"
+                )
+            }
+
+            if (paymentInformation?.fastSpring == true) {
+                sb.append(
+                    "<li><strong>FastSpring.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\" http://fastspring.com/privacy/\">http://fastspring.com/privacy/</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.googlePay == true) {
+                sb.append(
+                    "<li><strong>Google Pay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\" https://payments.google.com/payments/apis-secure/u/0/get_legal_document?ldo=0&ldt=privacynotice&ldl=en-GB\">https://policies.google.com/privacy</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.paytm == true) {
+                sb.append(
+                    "<li><strong>Google Pay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://pages.paytm.com/privacy.html\">https://pages.paytm.com/privacy.html</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.paytm == true) {
+                sb.append(
+                    "<li><strong>Google Pay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://pages.paytm.com/privacy.html\">https://pages.paytm.com/privacy.html</a>" +
+                            "</li>"
+                )
+            }
+
+
+            if (paymentInformation?.upi == true) {
+                sb.append(
+                    "<li><strong>UPI.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://www.bhimupi.org.in/privacy-policy\">https://www.bhimupi.org.in/privacy-policy</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.wePay == true) {
+                sb.append(
+                    "<li><strong>WePay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://go.wepay.com/privacy-policy/\">https://go.wepay.com/privacy-policy/</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.wePay == true) {
+                sb.append(
+                    "<li><strong>WePay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://go.wepay.com/privacy-policy/\">https://go.wepay.com/privacy-policy/</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.wePay == true) {
+                sb.append(
+                    "<li><strong>WorldPay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://online.worldpay.com/terms/privacy\">https://online.worldpay.com/terms/privacy</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.sage == true) {
+                sb.append(
+                    "<li><strong>Sage Pay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://www.opayo.co.uk/policies\">https://www.opayo.co.uk/policies</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.ccAvenue == true) {
+                sb.append(
+                    "<li><strong>CC Avenue.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://www.ccavenue.com/privacy.jsp\">https://www.ccavenue.com/privacy.jsp</a>" +
+                            "</li>"
+                )
+            }
+
+            if (paymentInformation?.razorPay == true) {
+                sb.append(
+                    "<li><strong>Razorpay.</strong> Their Privacy Policy can be viewed at " +
+                            "<a href=\"https://razorpay.com/privacy/\">https://razorpay.com/privacy/</a>" +
+                            "</li>"
+                )
+            }
+
+            sb.append("</ul>")
+        }
+        return sb.toString()
+    }
+
     fun generate(): String {
         val startHtmlString = "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
@@ -213,9 +505,12 @@ class PrivacyPolicyBuilder(
                 "                <div class=\"col-lg-9 line-h-more order-1 order-lg-2\">\n" +
                 "\n" +
                 "                    <div class=\"shadow-sm rounded bg-white pt-5 pl-5 pr-5 pb-4\">\n" +
-                "                        <h2 class=\"pb-3\">Privacy Policy</h2><p>Our Privacy Policy was posted on " + effectiveDate + ". It governs the privacy terms of our " + getHeaderOwner() + ", and the tools we provide you (the " + getTools() + " or the \"Service\"). Any capitalized terms not defined in our Privacy Policy, have the meaning as specified in our Terms.</p>\n" +
+                "                        <h2 class=\"pb-3\">Privacy Policy</h2><p> This Privacy Policy (“Privacy Policy”) applies to <strong>" + productName + "'s </strong> apps, services, features, software, and website (together, “Services”) unless specified otherwise.Our Privacy Policy was posted on " + effectiveDate + ". It governs the privacy terms of our " + getHeaderOwner() + ", and the tools we provide you (the " + getTools() + " or the \"Service\")." +
+                "                        Any capitalized terms not defined in our Privacy Policy, have the meaning as specified in our Terms.</p>\n" +
                 "                        <h2 class=\"pt-3 pb-3\">Your Privacy</h2>\n" +
-                "                        <p>Our Website follows all legal requirements to protect your privacy. Our Privacy Policy is a legal statement that explains how we may collect information from you, how we may share your information, and how you can limit our sharing of your information. You will see terms in our Privacy Policy that are capitalized. These terms have meanings as described in the Definitions section below.</p>\n" +
+                "                        <p>Our " + getTools() + " follows all legal requirements to protect your privacy. Our Privacy Policy is a legal statement that explains how we may collect information from you," +
+                "                            how we may share your information, and how you can limit our sharing of your information. You will see terms in our Privacy Policy that are capitalized. " +
+                "                           These terms have meanings as described in the Definitions section below.</p>\n" +
                 "                        <h2 class=\"pt-3 pb-3\">Definitions</h2>\n" +
                 "                        <ul>\n" +
                 "                            <li>\n" +
@@ -243,24 +538,7 @@ class PrivacyPolicyBuilder(
                 "                        <h2 class=\"pt-3 pb-3\">Information Collection And Use</h2>\n" +
                 "                        <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>\n" +
                 "                        <h3 class=\"text-muted pt-2 pb-3\">Types of Data Collected</h3>\n" +
-                "                        <ul>\n" +
-                "                            <li>\n" +
-                "                                <p><strong>Personal Data</strong></p>\n" +
-                "                                <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (\"Personal Data\"). Personally identifiable information may include, but is not limited to: Email address, Name, Address, State, Province, ZIP/Postal code, City, Cookies and Usage Data.</p>\n" +
-                "                                <p>We may use your Personal Data to contact you with newsletters, marketing or promotional materials and other information that may be of interest to you. You may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or instructions provided in any email we send.</p>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                <p><strong>Usage Data</strong>\n" +
-                "                                </p><p>We may also collect information how the Service is accessed and used (\"Usage Data\"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                <p><strong>Tracking &amp; Cookies Data</strong></p>\n" +
-                "                                <p>We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.</p>\n" +
-                "                                <p>Cookies are files with small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Tracking technologies also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.</p>\n" +
-                "                                <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>\n" +
-                "                                <p>Examples of Cookies we use: <strong>session cookies</strong> (we use these cookies to operate our Service) and <strong>preference cookies</strong> (we use these cookies to remember your preferences and various settings).</p>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
+                "                        <ul>\n" + getCollectingDataHtml() + "</ul>\n" +
                 "                        <h2 class=\"pt-3 pb-3\">Use of Data</h2>\n" +
                 "                        <p>We use the collected data for various purposes:</p>\n" +
                 "                        <ul>\n" +
@@ -288,8 +566,8 @@ class PrivacyPolicyBuilder(
                 "                        <h2 class=\"pt-3 pb-3\">Security Of Data</h2>\n" +
                 "                        <p>The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>\n" +
                 "                        <h2 class=\"pt-3 pb-3\">Legal Basis for Processing Personal Data Under General Data Protection Regulation (GDPR)</h2>\n" +
-                "                        <p>If you are from the European Economic Area (EEA), TermsFeed legal basis for collecting and using the personal information described in this Privacy Policy depends on the Personal Data we collect and the specific context in which we collect it.</p>\n" +
-                "                        <p>TermsFeed may process your Personal Data because:</p>\n" +
+                "                        <p>If you are from the European Economic Area (EEA), " + productName + " legal basis for collecting and using the personal information described in this Privacy Policy depends on the Personal Data we collect and the specific context in which we collect it.</p>\n" +
+                "                        <p>" + productName + " may process your Personal Data because:</p>\n" +
                 "                        <ul>\n" +
                 "                            <li>We need to perform a contract with you</li>\n" +
                 "                            <li>You have given us permission to do so</li>\n" +
@@ -298,7 +576,7 @@ class PrivacyPolicyBuilder(
                 "                            <li>To comply with the law</li>\n" +
                 "                        </ul>\n" +
                 "                        <h2 class=\"pt-3 pb-3\">Your Data Protection Rights Under General Data Protection Regulation (GDPR)</h2>\n" +
-                "                        <p>If you are a resident of the European Economic Area (EEA), you have certain data protection rights. TermsFeed aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.</p>\n" +
+                "                        <p>If you are a resident of the European Economic Area (EEA), you have certain data protection rights. " + productName + " aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.</p>\n" +
                 "                        <p>If you wish to be informed what Personal Data we hold about you and if you want it to be removed from our systems, please contact us.</p>\n" +
                 "                        <p>In certain circumstances, you have the following data protection rights:</p>\n" +
                 "                        <ul>\n" +
@@ -318,7 +596,7 @@ class PrivacyPolicyBuilder(
                 "                                <p><strong>The right to data portability.</strong> You have the right to be provided with a copy of your Personal Data in a structured, machine-readable and commonly used format.</p>\n" +
                 "                            </li>\n" +
                 "                            <li>\n" +
-                "                                <p><strong>The right to withdraw consent.</strong> You also have the right to withdraw your consent at any time where TermsFeed relied on your consent to process your personal information.</p>\n" +
+                "                                <p><strong>The right to withdraw consent.</strong> You also have the right to withdraw your consent at any time where " + productName + " relied on your consent to process your personal information.</p>\n" +
                 "                            </li>\n" +
                 "                        </ul>\n" +
                 "                        <p>Please note that we may ask you to verify your identity before responding to such requests.</p>\n" +
@@ -334,39 +612,12 @@ class PrivacyPolicyBuilder(
                 "                        <h2 class=\"pt-3 pb-3\">Service Providers</h2>\n" +
                 "                        <p>We may employ third party companies and individuals to facilitate our Service (\"Service Providers\"), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.</p>\n" +
                 "                        <p>These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>\n" +
-                "                        <h3 class=\"text-muted pt-2 pb-3\">Analytics</h3>\n" +
-                "                        <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>\n" +
-                "                        <ul>\n" +
-                "                            <li>\n" +
-                "                                <p><strong>Google Analytics</strong></p>\n" +
-                "                                <p>Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.</p>\n" +
-                "                                <p>You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js, and dc.js) from sharing information with Google Analytics about visits activity.</p>\n" +
-                "                                <p>For more information on the privacy practices of Google, please visit the Google Privacy &amp; Terms web page: <a href=\"http://www.google.com/intl/en/policies/privacy/\">http://www.google.com/intl/en/policies/privacy/</a></p>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <h3 class=\"text-muted pt-2 pb-3\">Payments</h3>\n" +
-                "                        <p>We may provide paid products and/or services within the Service. In that case, we use third-party services for payment processing (e.g. payment processors).</p>\n" +
-                "                        <p>We will not store or collect your payment card details. That information is provided directly to our third-party payment processors whose use of your personal information is governed by their Privacy Policy. These payment processors adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, Mastercard, American Express and Discover. PCI-DSS requirements help ensure the secure handling of payment information.</p>\n" +
-                "                        <p>The payment processors we work with are:</p>\n" +
-                "                        <ul>\n" +
-                "                            <li>\n" +
-                "                                <strong>PayPal or Braintree.</strong> Their Privacy Policy can be viewed at <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                <strong>FastSpring.</strong> Their Privacy Policy can be viewed at <a href=\" http://fastspring.com/privacy/\">http://fastspring.com/privacy/</a>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <h2 class=\"pt-3 pb-3\">Links To Other Sites</h2>\n" +
+                "                         " + getAnalyticsHtml() + "" + getPaymentHtml() + ""
+        "                        <h2 class=\"pt-3 pb-3\">Links To Other Sites</h2>\n" +
                 "                        <p>Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p>\n" +
-                "                        <p>We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p>\n" +
-                "                        <h2 class=\"pt-3 pb-3\">Children's Privacy</h2>\n" +
-                "                        <p>Our Service does not address anyone under the age of 18 (\"Children\").</p>\n" +
-                "                        <p>We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.</p>\n" +
-                "                        <h2 class=\"pt-3 pb-3\">Changes To This Privacy Policy</h2>\n" +
-                "                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>\n" +
-                "                        <p>We will let you know via email and/or a prominent notice on our Service, prior to the change becoming effective and update the \"effective date\" at the top of this Privacy Policy.</p>\n" +
-                "                        <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>\n" +
-                "                        <h2 class=\"pt-3 pb-3\">Contact Us</h2>\n" +
+                "                        <p>We have no control over and assume no responsibility for the content, " +
+                "                         privacy policies or practices of any third party sites or services.</p>" +
+                "                           " + getChildPrivacyHtml() + "<h2 class=\"pt-3 pb-3\">Contact Us</h2>\n" +
                 "                        <p>If you have any questions about this Privacy Policy, please contact us by using the contact information <a href=\"/contact\">we provided on our Contact page</a>.</p>\n" +
                 "                    </div>\n" +
                 "                </div>\n" +
@@ -382,6 +633,7 @@ class PrivacyPolicyBuilder(
 
         return startHtmlString + "\n" + endHtmlString
     }
+
 
     val html = "<!DOCTYPE html>\n" +
             "    <html>\n" +
