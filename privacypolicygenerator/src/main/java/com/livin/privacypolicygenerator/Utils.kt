@@ -1,6 +1,9 @@
 package com.livin.privacypolicygenerator
 
 import android.content.Context
+import android.content.Intent
+import androidx.core.content.FileProvider
+import java.io.File
 
 object Utils {
 
@@ -10,4 +13,23 @@ object Utils {
         }
     }
 
+    fun shareFile(file: File, context: Context) {
+        try {
+            if (file.exists()) {
+                val uri = FileProvider.getUriForFile(
+                    context,
+                    context.applicationInfo.packageName + ".provider",
+                    file
+                )
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                intent.type = "*/*"
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
+                context.startActivity(intent)
+            }
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
 }

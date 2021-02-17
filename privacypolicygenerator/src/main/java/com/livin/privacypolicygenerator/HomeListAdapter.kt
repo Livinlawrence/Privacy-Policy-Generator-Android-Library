@@ -23,7 +23,7 @@ class HomeListAdapter internal constructor(
         val home = homeItems[index]
         viewHolder.itemView.itemText.text = home.itemName
         viewHolder.itemView.itemImage.setImageResource(home.itemImage)
-        viewHolder.itemView.itemImage.setOnClickListener { view: View? ->
+        viewHolder.itemView.setOnClickListener { view: View? ->
             onHomeItemClickedListener(home)
         }
         //  viewHolder.imageHolder.setBackgroundColor(getRandomMaterialColor());

@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
     private fun prepareView() {
         val homeItems = ArrayList<HomeItem>()
         homeItems.add(HomeItem(1, "Privacy Policy Generator", R.drawable.ic_privacy_policy))
-        homeItems.add(
+       /* homeItems.add(
             HomeItem(
                 2,
                 "Terms and Conditions Generator",
@@ -28,10 +28,10 @@ class HomeActivity : AppCompatActivity() {
             )
         )
         homeItems.add(HomeItem(3, "Cookies Policy Generator", R.drawable.ic_cookie))
-        homeItems.add(HomeItem(4, "Disclaimer Generator", R.drawable.ic_disclaimer))
+        homeItems.add(HomeItem(4, "Disclaimer Generator", R.drawable.ic_disclaimer))*/
 
 
-        homeRecycler.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
+        homeRecycler.layoutManager = GridLayoutManager(this, 1, RecyclerView.VERTICAL, false)
         val allStickerPacksListAdapter = HomeListAdapter(homeItems) { selectedItem: HomeItem ->
             startActivity(Intent(this, GeneratorActivity::class.java).apply {
                 putExtra("item_type", selectedItem.id)

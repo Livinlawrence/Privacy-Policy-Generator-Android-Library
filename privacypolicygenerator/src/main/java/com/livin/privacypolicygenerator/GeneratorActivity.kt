@@ -26,14 +26,28 @@ class GeneratorActivity : AppCompatActivity(), ActivityCallBack {
     }
 
     override fun htmlGenerated(htmlString: String) {
+        supportActionBar?.title = "Privacy Policy"
         supportFragmentManager.beginTransaction()
             .add(R.id.frameLayout, WebViewFragment.newInstance(htmlString))
             .addToBackStack(WebViewFragment.TAG).commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        onBackPressed()
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+        }
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        when (supportFragmentManager.findFragmentById(R.id.frameLayout)) {
+            is PrivacyPolicyDetailsFragment -> {
+                supportActionBar?.title = "Generate Privacy Policy"
+            }
+            is WebViewFragment -> {
+                supportActionBar?.title = "Privacy Policy"
+            }
+        }
+    }
 }

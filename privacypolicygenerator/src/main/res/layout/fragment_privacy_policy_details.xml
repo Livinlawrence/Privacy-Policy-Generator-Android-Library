@@ -1028,6 +1028,7 @@
                 android:layout_marginTop="20dp"
                 android:shadowDx="-1"
                 android:shadowDy="-1"
+                android:visibility="gone"
                 android:shadowRadius="5"
                 android:text="@string/do_you_want_your_privacy_policy_to_include_caloppa_wording"
                 android:textSize="@dimen/questions_font_size"
@@ -1043,6 +1044,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gdprText" />
 
@@ -1093,7 +1095,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/product_name"
+                android:hint="@string/email"
                 app:boxStrokeColor="@android:color/holo_purple"
                 app:boxStrokeWidth="1dp"
                 app:counterEnabled="true"
@@ -1168,7 +1170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/email"
+                android:hint="@string/address"
                 app:boxStrokeColor="@android:color/holo_purple"
                 app:boxStrokeWidth="1dp"
                 app:counterEnabled="true"
@@ -1183,7 +1185,9 @@
                     android:id="@+id/contactAddressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPostalAddress|textMultiLine"
+                    android:gravity="start|top"
+                    android:inputType="textPostalAddress|textMultiLine|textCapSentences"
+                    android:minHeight="100dp"
                     android:maxLines="10" />
             </com.google.android.material.textfield.TextInputLayout>
 

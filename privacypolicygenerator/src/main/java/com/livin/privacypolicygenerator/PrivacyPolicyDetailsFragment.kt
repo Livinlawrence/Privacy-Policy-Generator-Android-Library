@@ -185,13 +185,22 @@ class PrivacyPolicyDetailsFragment : Fragment() {
 
     private fun validateRequiredFields() {
         val effectiveDate = effectiveDateText.text.toString()
-        val productName = productNameEditText.text.toString()
-        val productWebsite = websiteEditText.text.toString()
-        val businessAddress = businessAddressEditText.text.toString()
-        val businessEmail = businessEmailEditText.text.toString()
-        val businessPhone = businessContactNumberEditText.text.toString()
-        val businessCountry = businessCountryEditText.text.toString()
-        val developerName = developerNameEditText.text.toString()
+        /* val productName = productNameEditText.text.toString()
+         val productWebsite = websiteEditText.text.toString()
+         val businessAddress = businessAddressEditText.text.toString()
+         val businessEmail = businessEmailEditText.text.toString()
+         val businessPhone = businessContactNumberEditText.text.toString()
+         val businessCountry = businessCountryEditText.text.toString()
+         val developerName = developerNameEditText.text.toString()*/
+
+
+        val productName = "Holy Bible"
+        val productWebsite = "www.holybible.co.in"
+        val businessAddress = "Chalakudy"
+        val businessEmail = "livin@holybible.co.in"
+        val businessPhone = "9633683734"
+        val businessCountry = "India"
+        val developerName = "Livin"
 
         if (productName.isEmpty()) {
             productNameTextInputLayout.error = getString(R.string.mandatory_field)
@@ -308,53 +317,65 @@ class PrivacyPolicyDetailsFragment : Fragment() {
             val captchaProviderInformation = PrivacyPolicyBuilder.CaptchaProviderInformation()
 
 
-            val contactEmail = contactEmailEditText.text.toString()
-            val contactWebsite = contactWebsiteEditText.text.toString()
+            val contactEmail = "livinlawrence@gmail.com"
+            val contactWebsite = "www.holybible.co.in"
+            /*  val contactEmail = contactEmailEditText.text.toString()
+              val contactWebsite = contactWebsiteEditText.text.toString()*/
             val contactPhone = contactPhoneEditText.text.toString()
             val contactAddress = contactAddressEditText.text.toString()
 
-            val contactInformation = PrivacyPolicyBuilder.ContactInformation(
-                contactEmail,
-                contactWebsite,
-                contactPhone,
-                contactAddress
-            )
+            if (contactEmail.isEmpty()) {
+                contactEmailTextInputLayout.error = getString(R.string.invalid_email_address)
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(contactEmail).matches()) {
+                contactEmailTextInputLayout.error = getString(R.string.invalid_email_address)
+            } else if (contactWebsite.isEmpty()) {
+                contactWebsiteTextInputLayout.error = getString(R.string.invalid_website)
+            } else if (!Patterns.WEB_URL.matcher(contactWebsite).matches()) {
+                contactWebsiteTextInputLayout.error = getString(R.string.invalid_website)
+            } else {
+                val contactInformation = PrivacyPolicyBuilder.ContactInformation(
+                    contactEmail,
+                    contactWebsite,
+                    contactPhone,
+                    contactAddress
+                )
 
-            val htmlString = PrivacyPolicyBuilder(
-                context,
-                effectiveDate,
-                productName,
-                business,
-                developerName,
-                userInformation,
-                socialMediaInformation,
-                deviceInformation,
-                analyticsInformation,
-                emailInformation,
-                adsInformation,
-                paymentInformation,
-                reMarketingInformation,
-                captchaProviderInformation,
-                contactInformation,
-                ccpaSwitch.isChecked,
-                gdprSwitch.isChecked,
-                caloppaSwitch.isChecked,
-                individualCheckBox.isChecked,
-                businessCheckBox.isChecked,
-                appCheckBox.isChecked,
-                webCheckBox.isChecked,
-                userDataSwitch.isChecked,
-                deviceDataSwitch.isChecked,
-                analyticsSwitch.isChecked,
-                adsSwitch.isChecked,
-                emailSwitch.isChecked,
-                paymentSwitch.isChecked,
-                reMarketingSwitch.isChecked,
-                cookiesDataSwitch.isChecked,
-                childSwitch.isChecked
-            ).generate()
+                val htmlString = PrivacyPolicyBuilder(
+                    context,
+                    effectiveDate,
+                    productName,
+                    business,
+                    developerName,
+                    userInformation,
+                    socialMediaInformation,
+                    deviceInformation,
+                    analyticsInformation,
+                    emailInformation,
+                    adsInformation,
+                    paymentInformation,
+                    reMarketingInformation,
+                    captchaProviderInformation,
+                    contactInformation,
+                    ccpaSwitch.isChecked,
+                    gdprSwitch.isChecked,
+                    caloppaSwitch.isChecked,
+                    individualCheckBox.isChecked,
+                    businessCheckBox.isChecked,
+                    appCheckBox.isChecked,
+                    webCheckBox.isChecked,
+                    userDataSwitch.isChecked,
+                    deviceDataSwitch.isChecked,
+                    analyticsSwitch.isChecked,
+                    adsSwitch.isChecked,
+                    emailSwitch.isChecked,
+                    paymentSwitch.isChecked,
+                    reMarketingSwitch.isChecked,
+                    cookiesDataSwitch.isChecked,
+                    childSwitch.isChecked
+                ).build()
 
-            activityCallBack?.htmlGenerated(htmlString)
+                activityCallBack?.htmlGenerated(htmlString)
+            }
         }
     }
 
