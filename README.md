@@ -5,7 +5,9 @@ Android open source project
 
 ![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/blob/main/screenshots/1.png)
 ![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/blob/main/screenshots/2.png)
-![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/blob/main/screenshots/3.png)
+![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/blob/main/screenshots/4.png)
+![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/blob/main/screenshots/5.png)
+![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/blob/main/screenshots/6.png)
 
 
 
