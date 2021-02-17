@@ -18,7 +18,7 @@ License
 
    MIT License
 
-Copyright (c) 2017 Livin Lawrence
+Copyright (c) 2021 Livin Lawrence
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
