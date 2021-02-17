@@ -3,7 +3,7 @@ Android open source project
 
 # Sample Screens
 
-![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/tree/blob/google_ads/screenshots/1.png)
+![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/tree/blob/main/screenshots/1.png)
 
 
 
