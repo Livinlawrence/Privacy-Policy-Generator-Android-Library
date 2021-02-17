@@ -3,9 +3,9 @@ Android open source project
 
 # Sample Screens
 
-![image](https://github.com/Livinlawrence/SwipeLayoutKotlin/blob/screenshots/google_ads/1.png)
-![image](https://github.com/Livinlawrence/SwipeLayoutKotlin/blob/screenshots/google_ads/2.png)
-![image](https://github.com/Livinlawrence/SwipeLayoutKotlin/blob/screenshots/google_ads/3.png)
+![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/tree/blob/screenshots/google_ads/1.png)
+![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/tree/blob/screenshots/google_ads/2.png)
+![image](https://github.com/Livinlawrence/Privacy-Policy-Generator-Android-Library/tree/blob/screenshots/google_ads/3.png)
 
 
 
