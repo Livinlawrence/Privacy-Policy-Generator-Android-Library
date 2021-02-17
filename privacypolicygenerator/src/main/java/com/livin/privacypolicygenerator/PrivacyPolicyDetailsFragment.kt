@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import com.google.android.gms.ads.*
 import com.livin.privacypolicygenerator.interfaces.ActivityCallBack
 import kotlinx.android.synthetic.main.fragment_privacy_policy_details.*
 import java.text.SimpleDateFormat
@@ -21,6 +22,7 @@ private const val TYPE = "item_type"
 class PrivacyPolicyDetailsFragment : Fragment() {
     private var param1: Int = -1
     private var activityCallBack: ActivityCallBack? = null
+    private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -46,7 +48,11 @@ class PrivacyPolicyDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        MobileAds.initialize(requireContext())
+        mInterstitialAd = InterstitialAd(requireContext())
+        mInterstitialAd.adUnitId = "ca-app-pub-3910661356070266/5703917892"
+        //mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"//Test
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         userDataSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -185,22 +191,22 @@ class PrivacyPolicyDetailsFragment : Fragment() {
 
     private fun validateRequiredFields() {
         val effectiveDate = effectiveDateText.text.toString()
-        /* val productName = productNameEditText.text.toString()
-         val productWebsite = websiteEditText.text.toString()
-         val businessAddress = businessAddressEditText.text.toString()
-         val businessEmail = businessEmailEditText.text.toString()
-         val businessPhone = businessContactNumberEditText.text.toString()
-         val businessCountry = businessCountryEditText.text.toString()
-         val developerName = developerNameEditText.text.toString()*/
+        val productName = productNameEditText.text.toString()
+        val productWebsite = websiteEditText.text.toString()
+        val businessAddress = businessAddressEditText.text.toString()
+        val businessEmail = businessEmailEditText.text.toString()
+        val businessPhone = businessContactNumberEditText.text.toString()
+        val businessCountry = businessCountryEditText.text.toString()
+        val developerName = developerNameEditText.text.toString()
 
 
-        val productName = "Holy Bible"
-        val productWebsite = "www.holybible.co.in"
-        val businessAddress = "Chalakudy"
-        val businessEmail = "livin@holybible.co.in"
-        val businessPhone = "9633683734"
-        val businessCountry = "India"
-        val developerName = "Livin"
+        /* val productName = "Holy Bible"
+         val productWebsite = "www.holybible.co.in"
+         val businessAddress = "Chalakudy"
+         val businessEmail = "livin@holybible.co.in"
+         val businessPhone = "9633683734"
+         val businessCountry = "India"
+         val developerName = "Livin"*/
 
         if (productName.isEmpty()) {
             productNameTextInputLayout.error = getString(R.string.mandatory_field)
@@ -317,19 +323,27 @@ class PrivacyPolicyDetailsFragment : Fragment() {
             val captchaProviderInformation = PrivacyPolicyBuilder.CaptchaProviderInformation()
 
 
-            val contactEmail = "livinlawrence@gmail.com"
-            val contactWebsite = "www.holybible.co.in"
-            /*  val contactEmail = contactEmailEditText.text.toString()
-              val contactWebsite = contactWebsiteEditText.text.toString()*/
+            /* val contactEmail = "livinlawrence@gmail.com"
+             val contactWebsite = "www.holybible.co.in"*/
+            val contactEmail = contactEmailEditText.text.toString()
+            val contactWebsite = contactWebsiteEditText.text.toString()
             val contactPhone = contactPhoneEditText.text.toString()
             val contactAddress = contactAddressEditText.text.toString()
 
             if (contactEmail.isEmpty()) {
+                contactEmailTextInputLayout.parent.requestChildFocus(
+                    contactEmailTextInputLayout,
+                    contactEmailTextInputLayout
+                )
                 contactEmailTextInputLayout.error = getString(R.string.invalid_email_address)
             } else if (!Patterns.EMAIL_ADDRESS.matcher(contactEmail).matches()) {
                 contactEmailTextInputLayout.error = getString(R.string.invalid_email_address)
             } else if (contactWebsite.isEmpty()) {
                 contactWebsiteTextInputLayout.error = getString(R.string.invalid_website)
+                contactWebsiteTextInputLayout.parent.requestChildFocus(
+                    contactWebsiteTextInputLayout,
+                    contactWebsiteTextInputLayout
+                )
             } else if (!Patterns.WEB_URL.matcher(contactWebsite).matches()) {
                 contactWebsiteTextInputLayout.error = getString(R.string.invalid_website)
             } else {
@@ -374,7 +388,39 @@ class PrivacyPolicyDetailsFragment : Fragment() {
                     childSwitch.isChecked
                 ).build()
 
-                activityCallBack?.htmlGenerated(htmlString)
+
+
+                if (mInterstitialAd.isLoaded) {
+                    mInterstitialAd.show()
+
+                    mInterstitialAd.adListener = object : AdListener() {
+                        override fun onAdLoaded() {
+                            // Code to be executed when an ad finishes loading.
+                        }
+
+                        override fun onAdFailedToLoad(adError: LoadAdError) {
+                            activityCallBack?.htmlGenerated(htmlString)
+                        }
+
+                        override fun onAdOpened() {
+                            // Code to be executed when the ad is displayed.
+                        }
+
+                        override fun onAdClicked() {
+                            // Code to be executed when the user clicks on an ad.
+                        }
+
+                        override fun onAdLeftApplication() {
+                            // Code to be executed when the user has left the app.
+                        }
+
+                        override fun onAdClosed() {
+                            activityCallBack?.htmlGenerated(htmlString)
+                        }
+                    }
+                } else {
+                    activityCallBack?.htmlGenerated(htmlString)
+                }
             }
         }
     }
@@ -382,8 +428,8 @@ class PrivacyPolicyDetailsFragment : Fragment() {
 
     private fun showDatePicker(cal: Calendar) {
         val dpd = DatePickerDialog(
-            context!!,
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            requireContext(),
+            { view, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)

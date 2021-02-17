@@ -806,7 +806,9 @@ class PrivacyPolicyBuilder(
                 "\n" +
                 "</div></div>"
 
-        val endHtmlString = "</body></html>"
+        val endHtmlString = "<div><p>" +
+                "Generated from Privacy Policy Generator Android App <a href=https://play.google.com/store/apps/details?id=com.livin.policygenerator/> Try now</a></p></div> " +
+                "</body></html>"
 
         return startHtmlString + "\n" + endHtmlString
     }

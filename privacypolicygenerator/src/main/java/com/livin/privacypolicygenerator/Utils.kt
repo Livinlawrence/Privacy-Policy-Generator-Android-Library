@@ -13,7 +13,7 @@ object Utils {
         }
     }
 
-    fun shareFile(file: File, context: Context) {
+    fun shareFile(file: File, context: Context, text: String) {
         try {
             if (file.exists()) {
                 val uri = FileProvider.getUriForFile(
@@ -25,6 +25,7 @@ object Utils {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 intent.type = "*/*"
                 intent.putExtra(Intent.EXTRA_STREAM, uri)
+                intent.putExtra(Intent.EXTRA_TEXT, text)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
                 context.startActivity(intent)
             }

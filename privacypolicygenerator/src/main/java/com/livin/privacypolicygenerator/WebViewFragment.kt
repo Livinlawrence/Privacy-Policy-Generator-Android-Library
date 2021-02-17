@@ -47,7 +47,11 @@ class WebViewFragment : Fragment() {
         if (item.itemId == R.id.action_share) {
             uiScope.launch(Dispatchers.Main) {
                 val file = saveTextFile()
-                shareFile(file, requireContext())
+                shareFile(
+                    file,
+                    requireContext(),
+                    "Hello, I created this privacy policy from https://play.google.com/store/apps/details?id=com.livin.policygenerator"
+                )
             }
         }
         return super.onOptionsItemSelected(item)
