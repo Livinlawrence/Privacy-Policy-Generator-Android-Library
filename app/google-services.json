@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "940201278333",
+    "project_id": "utility-pdf",
+    "storage_bucket": "utility-pdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940201278333:android:e7264eedae5262136c6a14",
+        "android_client_info": {
+          "package_name": "com.livin.policygenerator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940201278333-ros9o255ciseufvj6r37fhhh221lufis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwkJ43W7Kfm_0M0lbEKpOlp0EX7CVvGrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940201278333-ros9o255ciseufvj6r37fhhh221lufis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940201278333:android:f6b0a4c9249c8e056c6a14",
+        "android_client_info": {
+          "package_name": "pdfutility.imagepdfconverter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940201278333-ros9o255ciseufvj6r37fhhh221lufis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwkJ43W7Kfm_0M0lbEKpOlp0EX7CVvGrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940201278333-ros9o255ciseufvj6r37fhhh221lufis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

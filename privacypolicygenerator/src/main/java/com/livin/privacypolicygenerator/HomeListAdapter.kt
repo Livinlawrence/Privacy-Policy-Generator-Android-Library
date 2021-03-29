@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_item_type.view.*
 import java.util.*
 
-class HomeListAdapter internal constructor(
+class HomeListAdapter(
     private val homeItems: ArrayList<HomeItem>,
     private val onHomeItemClickedListener: (HomeItem) -> Unit
 ) : RecyclerView.Adapter<HomeListAdapter.HomeListViewHolder>() {

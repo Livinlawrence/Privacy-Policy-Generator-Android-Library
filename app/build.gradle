@@ -1,7 +1,8 @@
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
     id 'kotlin-android'
-   id 'kotlin-android-extensions'
+    id 'kotlin-android-extensions'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -9,17 +10,33 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
+        multiDexEnabled true
+        applicationId "com.livin.policygenerator"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
+        versionCode 2
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('/Users/livinlawrence/Documents/FreelanceProjects/Android/Sticker/PrayerBook_Malayalam/holybible')
+            keyAlias = 'main_holy_bible'
+            storePassword 'passme123'
+            keyPassword 'passme123'
+        }
     }
 
     buildTypes {
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,19 +51,22 @@ android {
 
 dependencies {
 
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':privacypolicygenerator')
+
+    //Testing
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    //Ads
+    implementation 'com.google.android.gms:play-services-ads:19.4.0'
 
-    //Kotlin Coroutines
-    def coroutines_android_version = '1.3.9'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_android_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
+    //Firebase
+    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
 }

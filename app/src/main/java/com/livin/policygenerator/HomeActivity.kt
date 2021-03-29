@@ -1,10 +1,12 @@
-package com.livin.privacypolicygenerator
+package com.livin.policygenerator
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.livin.privacypolicygenerator.HomeItem
+import com.livin.privacypolicygenerator.HomeListAdapter
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 

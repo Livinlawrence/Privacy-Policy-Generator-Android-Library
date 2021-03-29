@@ -3,9 +3,6 @@
     package="com.livin.privacypolicygenerator">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application>
-        <activity android:name=".GeneratorActivity" />
-        <activity android:name=".HomeActivity" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -15,6 +12,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+
     </application>
 
 </manifest>
